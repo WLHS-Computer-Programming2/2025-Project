@@ -20,19 +20,31 @@ def draw():
 
 while True: # game loop
     for event in pygame.event.get():
-        if event.type == pygame.KEYDOWN: # if key is pressed down and released
-            if event.key in (pygame.K_UP, pygame.K_w):
-                player.y -= 10
-            if event.key in (pygame.K_DOWN, pygame.K_s):
-                player.y += 10
-            if event.key in (pygame.K_LEFT, pygame.K_a):
-                player.x -= 10
-            if event.key in (pygame.K_RIGHT, pygame.K_d):
-                player.x += 10
         if event.type == pygame.QUIT: # user clicks the X button in window
             pygame.quit()
             exit()
     
+        # if event.type == pygame.KEYDOWN: # if key is pressed down and released
+        #     if event.key in (pygame.K_UP, pygame.K_w):
+        #         player.y -= 10
+        #     if event.key in (pygame.K_DOWN, pygame.K_s):
+        #         player.y += 10
+        #     if event.key in (pygame.K_LEFT, pygame.K_a):
+        #         player.x -= 10
+        #     if event.key in (pygame.K_RIGHT, pygame.K_d):
+        #         player.x += 10
+        
+    keys = pygame.key.get_pressed()
+    if keys[pygame.K_UP] or keys[pygame.K_w]:
+        player.y -= 5
+    if keys[pygame.K_DOWN] or keys[pygame.K_s]:
+        player.y += 5
+    if keys[pygame.K_LEFT] or keys[pygame.K_a]:
+        player.x -= 5
+    if keys[pygame.K_RIGHT] or keys[pygame.K_d]:
+        player.x += 5
+        
+        
     draw()
     pygame.display.update()
     clock.tick(60) # 60 frames per second (fps)
