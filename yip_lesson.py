@@ -1,10 +1,17 @@
 import pygame
 from sys import exit
+from pathlib import Path
 
-
-pygame.init()
+# game variables
 WINDOW_WIDTH = 512
 WINDOW_HEIGHT = 512
+
+# images
+image_dir = Path("images/")
+
+background_image = pygame.image.load(str(image_dir)+"/background.png")
+player_image_right = pygame.image.load(str(image_dir)+"/megaman-right.png")
+
 
 pygame.init()
 window = pygame.display.set_mode((WINDOW_WIDTH,WINDOW_HEIGHT))
@@ -16,6 +23,7 @@ player = pygame.Rect(150,150,50,50)
 
 def draw():
     window.fill((20,18,167)) # rgb tuple fills background
+    window.blit(background_image,(0,80)) # order matters!
     pygame.draw.rect(window,(2,239,238),player)
 
 while True: # game loop
