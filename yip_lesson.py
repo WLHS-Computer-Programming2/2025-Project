@@ -11,6 +11,8 @@ PLAYER_Y = WINDOW_HEIGHT / 2
 PLAYER_WIDTH = 42
 PLAYER_HEIGHT = 48
 
+PLAYER_DISTANCE = 5
+
 # images
 image_dir = Path("images/")
 
@@ -38,7 +40,7 @@ player = Player()
 
 
 def draw():
-    window.fill((20, 18, 167))  # rgb tuple fills background
+    window.fill((20, 18, 167))  # rgb tuple fills background, transparent otherwise if I remove this
     window.blit(background_image, (0, 80))  # order matters!
     window.blit(player.image, player)
 
@@ -49,25 +51,15 @@ while True:  # game loop
             pygame.quit()
             exit()
 
-        # if event.type == pygame.KEYDOWN: # if key is pressed down and released
-        #     if event.key in (pygame.K_UP, pygame.K_w):
-        #         player.y -= 10
-        #     if event.key in (pygame.K_DOWN, pygame.K_s):
-        #         player.y += 10
-        #     if event.key in (pygame.K_LEFT, pygame.K_a):
-        #         player.x -= 10
-        #     if event.key in (pygame.K_RIGHT, pygame.K_d):
-        #         player.x += 10
-
     keys = pygame.key.get_pressed()
-    if keys[pygame.K_UP] or keys[pygame.K_w]:
-        player.y -= 5
-    if keys[pygame.K_DOWN] or keys[pygame.K_s]:
-        player.y += 5
+    if (keys[pygame.K_UP] or keys[pygame.K_w]) and player.y - PLAYER_DISTANCE >= 0:
+        player.y -= PLAYER_DISTANCE
+    if (keys[pygame.K_DOWN] or keys[pygame.K_s]) and player.y + player.height + PLAYER_DISTANCE <= WINDOW_HEIGHT:
+        player.y += PLAYER_DISTANCE
     if keys[pygame.K_LEFT] or keys[pygame.K_a]:
-        player.x -= 5
+        player.x -= PLAYER_DISTANCE
     if keys[pygame.K_RIGHT] or keys[pygame.K_d]:
-        player.x += 5
+        player.x += PLAYER_DISTANCE
 
     draw()
     pygame.display.update()

@@ -59,3 +59,17 @@ while True:                     # --- game loop ---
 2. Key‑state poll (key.get_pressed): use for actions that happen every frame a key is held (smooth movement, camera scrolling).
 
 Process all events first, then poll the keyboard once per frame, and your input logic remains simple and reliable.
+
+## Single key press
+
+```
+# if event.type == pygame.KEYDOWN: # if key is pressed down and released
+        #     if event.key in (pygame.K_UP, pygame.K_w):
+        #         player.y -= 10
+        #     if event.key in (pygame.K_DOWN, pygame.K_s):
+        #         player.y += 10
+        #     if event.key in (pygame.K_LEFT, pygame.K_a):
+        #         player.x -= 10
+        #     if event.key in (pygame.K_RIGHT, pygame.K_d):
+        #         player.x += 10
+```
