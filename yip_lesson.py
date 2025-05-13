@@ -53,13 +53,13 @@ while True:  # game loop
 
     keys = pygame.key.get_pressed()
     if (keys[pygame.K_UP] or keys[pygame.K_w]) and player.y - PLAYER_DISTANCE >= 0:
-        player.y -= PLAYER_DISTANCE
+        player.y = max(player.y-PLAYER_DISTANCE,0)
     if (keys[pygame.K_DOWN] or keys[pygame.K_s]) and player.y + player.height + PLAYER_DISTANCE <= WINDOW_HEIGHT:
-        player.y += PLAYER_DISTANCE
-    if keys[pygame.K_LEFT] or keys[pygame.K_a]:
-        player.x -= PLAYER_DISTANCE
+        player.y = min(player.y+PLAYER_DISTANCE,WINDOW_HEIGHT-player.height)
+    if (keys[pygame.K_LEFT] or keys[pygame.K_a]) and player.x - player.width:
+        player.x = max(player.x-PLAYER_DISTANCE,0)
     if keys[pygame.K_RIGHT] or keys[pygame.K_d]:
-        player.x += PLAYER_DISTANCE
+        player.x = min(player.x + PLAYER_DISTANCE,WINDOW_WIDTH-player.width)
 
     draw()
     pygame.display.update()
